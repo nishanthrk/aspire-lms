@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "4c98bd5e-e25b-4cca-8498-92a322c47fc6",
+		"name": "Aspire LMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1769974"
+	},
+	"item": [
+		{
+			"name": "Application Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "CUSTOMER_API"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user\": {\n    \"country_code\": \"IND\",\n    \"user_name\": \"John Doe\",\n    \"user_email\": \"john.doe@example.com\",\n    \"mobile_number\": \"1234567890\",\n    \"kyc\": {\n      \"kyc_type\": \"PAN\",\n      \"kyc_number\": \"ABCDE1234F\"\n    }\n  },\n  \"loan_application\": {\n    \"loan_amount\": 100000.00,\n    \"currency_code\": \"INR\",\n    \"interest_rate\": 7.5,\n    \"loan_term\": 12,\n    \"loan_term_unit\": \"WEEKLY\",\n    \"income\": 600000.00,\n    \"credit_score\": 750,\n    \"existing_debts\": 100000.00,\n    \"country_code\": \"IND\"\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/application",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"application"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Application",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFwcHJvdmVyIE9uZSIsInVzZXJfdHlwZSI6IkVNUExPWUVFIiwidXNlcl9pZCI6IjUzMjk3OTIxLTAxZDktNDMxMS05NGYzLTU0Y2JiOTcxYzVhMCIsImlzcyI6IkFTUElSRSIsImV4cCI6MTcxODU2ODU1MCwiaWF0IjoxNzE4NTE4MTUwfQ.bmmsD1oFv68xdLzYiLLvaZ2dYf7I1l2FOU1n6WSbnrc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "CUSTOMER_API"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFwcHJvdmVyIE9uZSIsInVzZXJfdHlwZSI6IkVNUExPWUVFIiwidXNlcl9pZCI6IjUzMjk3OTIxLTAxZDktNDMxMS05NGYzLTU0Y2JiOTcxYzVhMCIsImlzcyI6IkFTUElSRSIsImV4cCI6MTcxODUxNDA2OX0.QuKDYgSExuTEFatB149t-Upf5pFzbDzAVR3Ar7YDRyY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"approved_amount\": 100000,\n    \"override\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/application/:application-id/approve",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"application",
+						":application-id",
+						"approve"
+					],
+					"variable": [
+						{
+							"key": "application-id",
+							"value": "1e5d6d36-d5c0-434e-ad20-864a9cd50d81"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - Employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "EMPLOYEE_API"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifier\": \"9790970381\",\n    \"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/user/auth",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "CUSTOMER_API"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identifier\": \"1234567890\",\n    \"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/user/auth",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFwcHJvdmVyIE9uZSIsInVzZXJfdHlwZSI6IkVNUExPWUVFIiwidXNlcl9pZCI6IjUzMjk3OTIxLTAxZDktNDMxMS05NGYzLTU0Y2JiOTcxYzVhMCIsImlzcyI6IkFTUElSRSIsImV4cCI6MTcxODU4MzkyNCwiaWF0IjoxNzE4NTMzNTI0fQ.eEU_qNas4Kdq-4qbeaO1PA5W9qmqYZxjfoMCIHIUVH0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "EMPLOYEE_API"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/application/:application-id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"application",
+						":application-id"
+					],
+					"variable": [
+						{
+							"key": "application-id",
+							"value": "4235a70a-b274-4821-bf2c-d72614ed2ab5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Repayment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvaG4gRG9lIiwidXNlcl90eXBlIjoiQ1VTVE9NRVIiLCJ1c2VyX2lkIjoiMjUzNjI3MWYtZjMwNS00MWNhLWFkNzktZjEyOGRhYmM2NGNhIiwiaXNzIjoiQVNQSVJFIiwiZXhwIjoxNzE4NTkxNzIyLCJpYXQiOjE3MTg1NDEzMjJ9.TdnBfbitnYSF6D3A7Z9chSKPeQY5TqNCg2BziJaYCSw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "EMPLOYEE_API"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payment_amount\": 9000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/application/:application-id/repayment",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"application",
+						":application-id",
+						"repayment"
+					],
+					"variable": [
+						{
+							"key": "application-id",
+							"value": "4235a70a-b274-4821-bf2c-d72614ed2ab5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvaG4gRG9lIiwidXNlcl90eXBlIjoiQ1VTVE9NRVIiLCJ1c2VyX2lkIjoiMjUzNjI3MWYtZjMwNS00MWNhLWFkNzktZjEyOGRhYmM2NGNhIiwiaXNzIjoiQVNQSVJFIiwiZXhwIjoxNzE4NTkxNzIyLCJpYXQiOjE3MTg1NDEzMjJ9.TdnBfbitnYSF6D3A7Z9chSKPeQY5TqNCg2BziJaYCSw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "CUSTOMER_API"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFwcHJvdmVyIE9uZSIsInVzZXJfdHlwZSI6IkVNUExPWUVFIiwidXNlcl9pZCI6IjUzMjk3OTIxLTAxZDktNDMxMS05NGYzLTU0Y2JiOTcxYzVhMCIsImlzcyI6IkFTUElSRSIsImV4cCI6MTcxODUxNDA2OX0.QuKDYgSExuTEFatB149t-Upf5pFzbDzAVR3Ar7YDRyY"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/application/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Approve",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFwcHJvdmVyIE9uZSIsInVzZXJfdHlwZSI6IkVNUExPWUVFIiwidXNlcl9pZCI6IjUzMjk3OTIxLTAxZDktNDMxMS05NGYzLTU0Y2JiOTcxYzVhMCIsImlzcyI6IkFTUElSRSIsImV4cCI6MTcxODU4OTMzOSwiaWF0IjoxNzE4NTM4OTM5fQ.7-0-W4M-ScjqhLLAuQ_2M0yyl8UVbHG-PDgd3nGwDTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Platform",
+						"value": "EMPLOYEE_API"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFwcHJvdmVyIE9uZSIsInVzZXJfdHlwZSI6IkVNUExPWUVFIiwidXNlcl9pZCI6IjUzMjk3OTIxLTAxZDktNDMxMS05NGYzLTU0Y2JiOTcxYzVhMCIsImlzcyI6IkFTUElSRSIsImV4cCI6MTcxODUxNDA2OX0.QuKDYgSExuTEFatB149t-Upf5pFzbDzAVR3Ar7YDRyY",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"approved_amount\": 100000,\n    \"override\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/application/:application-id/approve",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"application",
+						":application-id",
+						"approve"
+					],
+					"variable": [
+						{
+							"key": "application-id",
+							"value": "4235a70a-b274-4821-bf2c-d72614ed2ab5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
