@@ -95,7 +95,7 @@ boilerplate
 ## Getting Started
 
 ### Prerequisites
-- [Go](https://golang.org/doc/install) 1.16 or later
+- [Go](https://golang.org/doc/install) 1.20 or later
 - [Docker](https://docs.docker.com/get-docker/)
 
 ### Installation
